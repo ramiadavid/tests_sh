@@ -1,0 +1,4 @@
+{
+    "argv":["odoo-kernel", "{connection_file}"],
+    "display_name":"Odoo-shell"
+}
