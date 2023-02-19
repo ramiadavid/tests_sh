@@ -1,4 +1,4 @@
-#!python3
+#!/opt/odoo/odoo-venv/bin/python3
 
 import sys
 
