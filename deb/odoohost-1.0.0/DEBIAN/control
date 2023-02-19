@@ -1,6 +1,11 @@
-Package: helloa
-Version: 1.1
-Architecture: amd64
-Maintainer: Internal Pointers <info@internalpointers.com>
-Description: A program that greets you.
- You can add a longer description here. Mind the space at the beginning of this paragraph.
+Source: odoo-host
+Section: devel
+Priority: optional
+Maintainer: Jane Doe <packager@example.com>
+Standards-Version: 3.9.3
+Homepage: http://www.gnu.org/software/hello/
+
+Package: odoo-host
+Architecture: any
+Depends: python3
+Description: Odoo hosting
