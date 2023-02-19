@@ -1,0 +1,106 @@
+#!/opt/odoo/odoo-venv/bin/python3
+
+import sys
+
+import odoo
+
+from ipykernel.ipkernel import IPythonKernel
+from ipykernel.kernelapp import IPKernelApp
+
+
+class Pretty:
+
+    def __init__(self, obj):
+        self.obj = obj
+
+    def _repr_html_(self):
+        try:
+            return self.to_html(*self.format())
+        except NotImplementedError:
+            return str(self.obj)
+
+    def format(self):
+        if isinstance(self.obj, list):
+            if all(isinstance(element, dict) for element in self.obj):
+                keys = []
+                for d in self.obj:
+                    for i, key in enumerate(d):
+                        if key not in keys:
+                            before = next((k for k in list(d.keys())[i:] if k in keys), None)
+                            if before:
+                                keys.insert(keys.index(before), key)
+                            else:
+                                keys.append(key)
+                return [keys] + [[d.get(key) for key in keys] for d in self.obj], True, False
+            else:
+                return self.obj, False, False
+        elif isinstance(self.obj, dict):
+            return [[key] + (value if isinstance(value, (list, tuple)) else [value])for key, value in self.obj.items()], False, True
+        raise NotImplementedError()
+
+    def to_html(self, values, header_row=False, header_col=False):
+        if not all(isinstance(value, (list, tuple)) for value in values):
+            values = [values]
+        html = ["<table>"]
+        for index_row, value in enumerate(values):
+            html.append("<tr>")
+            if not isinstance(value, (list, tuple)):
+                value = [value]
+            for index_col, el in enumerate(value):
+                if (header_row and index_row == 0) or (header_col and index_col == 0):
+                    node = 'th'
+                else:
+                    node = 'td'
+                html.append("<{0}>{1}</{0}>".format(node, str(el)))
+            html.append("</tr>")
+        html.append("</table>")
+        return ''.join(html)
+
+
+class OdooKernel(IPythonKernel):
+    @property
+    def banner(self):
+        return r"""Odoo %s
+Available Odoo variables:
+- odoo: Odoo Python module,
+- env: Odoo Environment,
+- self: administrator user,
+- Pretty: a class to pretty print lists and dicts,
+  e.g. Pretty(env['res.users'].search_read([], ['name', 'email', 'login']))
+
+/!\ WARNING: USE env.cr.commit() TO APPLY YOUR CHANGES. UNCOMMITTED CHANGES IN AN OPEN SHELL CAN BLOCK YOUR DATABASE !!! /!\
+""" % odoo.release.version  # NOQA
+
+
+if __name__ == "__main__":
+    connection_file = sys.argv[1]
+    odoo.tools.config.parse_config(['-c', '/etc/odoo-server.conf', '--logfile', '/var/log/odoo/odoo-sh.log', '-d' ,'processcontrol'])
+    dbname = odoo.tools.config['db_name']
+    odoo.cli.server.report_configuration()
+
+    uid = odoo.SUPERUSER_ID
+    if int(odoo.release.version[:2]) >= 15:
+        with odoo.registry(dbname).cursor() as cr:
+            ctx = odoo.api.Environment(cr, uid, {})['res.users'].context_get()
+            env = odoo.api.Environment(cr, uid, ctx)
+            local_vars = {
+                'openerp': odoo,
+                'odoo': odoo,
+                'env': env,
+                'self': env.user,
+                'Pretty': Pretty,
+            }
+            IPKernelApp.launch_instance(argv=[], kernel_class=OdooKernel, user_ns=local_vars, connection_file=connection_file)
+    else:
+        with odoo.api.Environment.manage():
+            with odoo.sql_db.db_connect(dbname).cursor() as cr:
+                ctx = odoo.api.Environment(cr, uid, {})['res.users'].context_get()
+                env = odoo.api.Environment(cr, uid, ctx)
+                local_vars = {
+                    'openerp': odoo,
+                    'odoo': odoo,
+                    'env': env,
+                    'self': env.user,
+                    'Pretty': Pretty,
+                }
+                IPKernelApp.launch_instance(argv=[], kernel_class=OdooKernel, user_ns=local_vars, connection_file=connection_file)
