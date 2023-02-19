@@ -1,4 +1,5 @@
-apt-get update &&  apt-get -y install git
+apt-get update
+apt-get -y install git
 git clone https://github.com/ramiadavid/tests_sh.git
 cd tests_sh/deb
 

@@ -1,0 +1,16 @@
+[Unit]
+Description=Jupyterlab
+After=network.target
+
+[Service]
+Type=simple
+SyslogIdentifier=jupyterlab
+PermissionsStartOnly=true
+User=odoo
+Group=odoo
+ExecStart=/opt/odoo.sh/start-jupyter
+KillMode=mixed
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target
