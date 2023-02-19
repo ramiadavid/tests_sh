@@ -1,5 +1,5 @@
-Package: hello
-Version: 1.0
+Package: helloa
+Version: 1.1
 Architecture: amd64
 Maintainer: Internal Pointers <info@internalpointers.com>
 Description: A program that greets you.
