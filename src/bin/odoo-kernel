@@ -74,7 +74,7 @@ Available Odoo variables:
 
 if __name__ == "__main__":
     connection_file = sys.argv[1]
-    odoo.tools.config.parse_config(['-c', '/etc/odoo-server.conf', '--logfile', '/var/log/odoo/odoo-sh.log'])
+    odoo.tools.config.parse_config(['-c', '/etc/odoo-server.conf', '--logfile', '/var/log/odoo/odoo-sh.log', '-d' ,'processcontrol'])
     dbname = odoo.tools.config['db_name']
     odoo.cli.server.report_configuration()
 
