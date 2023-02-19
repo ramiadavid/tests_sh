@@ -1,7 +1,8 @@
 #!/bin/bash
-useradd -m -d /home/odoo -U -r -s /bin/bash odoo
-mkdir /home/odoo/data
-mkdir /home/odoo/src
-git clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo
-git clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes
-#git clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterpise
+id -u odoo &>/dev/null || useradd useradd -m -d /home/odoo -U -r -s /bin/bash odoo
+mkdir -p /home/odoo/data
+mkdir -p /home/odoo/src
+git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo
+git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes
+#git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
+
