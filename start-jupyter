@@ -2,5 +2,6 @@
 source jupyterlab/bin/activate
 export JUPYTER_DATA_DIR="$(realpath jupyterlab/share/jupyter)"
 export PYTHONPATH="${PYTHONPATH}:/opt/odoo/odoo:/opt/odoo/odoo-venv/lib/python3.8/site-packages/"
-echo "${JUPYTER_DATA_DIR}"
+export PATH="${PATH}:$(realpath jupyterlab/bin)"
+echo "${PATH}"
 jupyter-lab --ip=0.0.0.0 --ServerApp.base_url=/odoo-sh/jupyterlab
