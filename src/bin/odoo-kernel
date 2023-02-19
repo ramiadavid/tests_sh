@@ -77,7 +77,7 @@ if __name__ == "__main__":
     odoo.tools.config.parse_config(['-c', '/etc/odoo-server.conf', '--logfile', '/var/log/odoo/odoo-sh.log'])
     dbname = odoo.tools.config['db_name']
     odoo.cli.server.report_configuration()
-    odoo.service.server.start(preload=[], stop=True)
+
     uid = odoo.SUPERUSER_ID
     if int(odoo.release.version[:2]) >= 15:
         with odoo.registry(dbname).cursor() as cr:
