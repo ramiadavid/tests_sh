@@ -1,10 +1,13 @@
 #!/bin/bash
-id -u odoo &>/dev/null || useradd useradd -m -d /home/odoo -U -r -s /bin/bash odoo
+su -c "python3 -m venv /home/odoo/venv" odoo
+
+id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 mkdir -p /home/odoo/data
 mkdir -p /home/odoo/src
 git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo
 git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes
 #git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
 
-pip install jupyterlab
-pip install markupsafe==2.0.1
+python3 -m venv /opt/odoo.sh/jupyterlab
+/opt/odoo.sh/jupyterlab/bin/pip install jupyterlab
+/opt/odoo.sh/jupyterlab/bin/pip install markupsafe==2.0.1
