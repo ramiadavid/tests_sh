@@ -5,4 +5,3 @@ mkdir -p /home/odoo/src
 git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo
 git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes
 #git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
-
