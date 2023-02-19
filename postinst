@@ -1,0 +1,7 @@
+#!/bin/bash
+useradd -m -d /home/odoo -U -r -s /bin/bash odoo
+su - postgres -c "createuser -s odoo"
+mkdir /home/odoo/data
+mkdir /home/odoo/src
+git clone https://www.github.com/odoo/odoo --depht=1 -b 15.0 /home/odoo/src/odoo
+git clone https://www.github.com/odoo/enterprise --depht=1 -b 15.0 /home/odoo/src/enterpise
