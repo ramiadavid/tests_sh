@@ -1,8 +1,10 @@
-Source: odoo_host
+Source: odoo-host
+Section: devel
+Priority: optional
 Maintainer: Jane Doe <packager@example.com>
 Version: 3.9.3
 Homepage: http://www.gnu.org/software/hello/
-Package: odoo_host
+Package: odoo-host
 Architecture: amd64
 Depends: python3
 Description: Odoo hosting
