@@ -6,9 +6,9 @@ su -c "mkdir -p /home/odoo/data" odoo
 su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
 
-su -c "git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo" odoo
-su -c "git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes" odoo
-#git -C /home/odoo/src/odoo pull || clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
+su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo" odoo
+su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes" odoo
+#git -C /home/odoo/src/odoo pull || git clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
 
 python3 -m venv /opt/odoo.sh/jupyterlab
 chown odoo -R /opt/odoo.sh
