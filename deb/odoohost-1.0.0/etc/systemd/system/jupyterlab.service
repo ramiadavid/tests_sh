@@ -12,7 +12,7 @@ SyslogIdentifier=jupyterlab
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=/opt/odoo.sh/jupyterlab/bin/jupyter-lab --port=8888 --ip=0.0.0.0 --ServerApp.base_url=/odoo-sh/jupyterlabr
+ExecStart=/opt/odoo.sh/jupyterlab/bin/jupyter-lab --port=8888 --ip=0.0.0.0 --ServerApp.base_url=/odoo-sh/jupyterlab
 KillMode=mixed
 StandardOutput=journal+console
 

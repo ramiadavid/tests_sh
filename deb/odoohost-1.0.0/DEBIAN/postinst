@@ -14,6 +14,8 @@ su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://github.c
 su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://github.com/odoo/design-themes.git/ --depth=1 -b 15.0 /home/odoo/src/themes" odoo
 #git -C /home/odoo/src/odoo pull || git clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
 
+su -c "/home/odoo/venv/bin/pip install pip --upgrade" odoo
+su -c "/home/odoo/venv/bin/pip install wheel" odoo
 su -c "/home/odoo/venv/bin/pip install -r /home/odoo/src/odoo/requirements.txt" odoo
 
 
