@@ -5,7 +5,7 @@ rm -f /root/.ssh/id_rsa.pub
 gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
 rm /root/.ssh/*.enc
-chmod 0664 /root/.ssh/*
+chmod 400 /root/.ssh/*
 
 systemctl restart postgresql
 su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo" postgres
