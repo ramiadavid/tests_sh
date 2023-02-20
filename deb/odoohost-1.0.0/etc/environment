@@ -2,7 +2,6 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/u
 PGPASSWORD=toBe72/*
 PGUSER=odoo
 PGDATABASE=processcontrol
-ADDONS_PATH=/home/odoo/src/odoo/addons,/home/odoo/src/themes,/home/odoo/src/enterprise
 PGHOST=localhost
 TZ=Europe/Madrid
 LANG C.UTF-8
