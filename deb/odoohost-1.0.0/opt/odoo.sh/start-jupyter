@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")" || exit
 source jupyterlab/bin/activate
 export JUPYTER_DATA_DIR="$(realpath jupyterlab/share/jupyter)"
 export PYTHONPATH="${PYTHONPATH}:/opt/odoo/odoo:/opt/odoo/odoo-venv/lib/python3.8/site-packages/"
