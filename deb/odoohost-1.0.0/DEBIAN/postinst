@@ -28,5 +28,5 @@ su -c "/opt/odoo.sh/jupyterlab/bin/pip install markupsafe==2.0.1" odoo
 
 systemctl daemon-reload
 systemctl enable --now jupyterlab
-
+systemctl enable --now odoo
 

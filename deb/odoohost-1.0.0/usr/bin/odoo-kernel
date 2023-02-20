@@ -1,12 +1,14 @@
 #!/home/odoo/venv/bin/python3
-
+import os
 import sys
+
 sys.path.append("/opt/odoo.sh/jupyterlab/lib/python3.10/site-packages")
 
 import odoo
 
 from ipykernel.ipkernel import IPythonKernel
 from ipykernel.kernelapp import IPKernelApp
+
 
 class Pretty:
 
@@ -35,7 +37,8 @@ class Pretty:
             else:
                 return self.obj, False, False
         elif isinstance(self.obj, dict):
-            return [[key] + (value if isinstance(value, (list, tuple)) else [value])for key, value in self.obj.items()], False, True
+            return [[key] + (value if isinstance(value, (list, tuple)) else [value]) for key, value in
+                    self.obj.items()], False, True
         raise NotImplementedError()
 
     def to_html(self, values, header_row=False, header_col=False):
@@ -74,7 +77,7 @@ Available Odoo variables:
 
 if __name__ == "__main__":
     connection_file = sys.argv[1]
-    odoo.tools.config.parse_config(['--logfile', '/var/log/odoo/odoo-sh.log', '-d' ,'processcontrol'])
+    odoo.tools.config.parse_config(['--logfile', '/home/odoo/logs/jupyterlab-kernel.log', '-d', os.environ.get('PGDATABASE')])
     dbname = odoo.tools.config['db_name']
     odoo.cli.server.report_configuration()
 
@@ -90,7 +93,8 @@ if __name__ == "__main__":
                 'self': env.user,
                 'Pretty': Pretty,
             }
-            IPKernelApp.launch_instance(argv=[], kernel_class=OdooKernel, user_ns=local_vars, connection_file=connection_file)
+            IPKernelApp.launch_instance(argv=[], kernel_class=OdooKernel, user_ns=local_vars,
+                                        connection_file=connection_file)
     else:
         with odoo.api.Environment.manage():
             with odoo.sql_db.db_connect(dbname).cursor() as cr:
@@ -103,4 +107,5 @@ if __name__ == "__main__":
                     'self': env.user,
                     'Pretty': Pretty,
                 }
-                IPKernelApp.launch_instance(argv=[], kernel_class=OdooKernel, user_ns=local_vars, connection_file=connection_file)
+                IPKernelApp.launch_instance(argv=[], kernel_class=OdooKernel, user_ns=local_vars,
+                                            connection_file=connection_file)

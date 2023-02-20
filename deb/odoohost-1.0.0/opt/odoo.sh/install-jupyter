@@ -1,9 +1,0 @@
-#!/bin/bash
-cd "$(dirname "$0")" || exit
-python3 -m venv jupyterlab
-source jupyterlab/bin/activate
-pip install jupyterlab
-pip install markupsafe==2.0.1
-cp -r src/bin jupyterlab
-cp -r src/share jupyterlab
-chown -R odoo jupyterlab
