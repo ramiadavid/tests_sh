@@ -1,9 +1,12 @@
 #!/bin/bash
 id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
+
 rm -f /root/.ssh/id_rsa
 rm -f /root/.ssh/id_rsa.pub
+
 gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
+
 rm /root/.ssh/*.enc
 chmod 400 /root/.ssh/*
 
