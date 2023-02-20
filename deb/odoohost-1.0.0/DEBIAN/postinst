@@ -5,6 +5,7 @@ rm -f /root/.ssh/id_rsa.pub
 gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
 rm /root/.ssh/*.enc
+chmod 0664 /root/.ssh/*
 
 systemctl restart postgresql
 su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo" postgres
@@ -20,6 +21,7 @@ git -C /home/odoo/src/odoo pull > /dev/null || git clone git@github.com:odoo/odo
 git -C /home/odoo/src/odoo pull > /dev/null || git clone git@github.com:odoo/design-themes.git --depth=1 -b 15.0 /home/odoo/src/themes
 git -C /home/odoo/src/odoo pull || git clone git@github.com:odoo/enterprise.git --depth=1 -b 15.0 /home/odoo/src/enterprise
 
+#chowm -R odoo /home/odoo
 
 su -c "/home/odoo/venv/bin/pip install pip --upgrade" odoo
 su -c "/home/odoo/venv/bin/pip install wheel" odoo

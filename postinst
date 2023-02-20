@@ -6,3 +6,4 @@ dpkg-deb --build --root-owner-group odoohost-1.0.0 &&  apt-get -y install -f ./o
 
 
 dpkg-deb --build --root-owner-group odoohost-1.0.0 && apt-get -y remove odoo-host && apt-get -y install -f ./odoohost-1.0.0.deb
+
