@@ -3,7 +3,7 @@ id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 
 gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
-rm /root/.shh/*.enc
+rm /root/.ssh/*.enc
 
 systemctl restart postgresql
 su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo" postgres
