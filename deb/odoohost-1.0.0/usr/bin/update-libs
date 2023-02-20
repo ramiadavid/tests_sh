@@ -15,11 +15,11 @@ requirements=$(find "${addons_path}" -name "requirements.txt" -printf "%h\n" | s
   echo pdfminer                                                # Libreria no imprescindible pero recomendada
   echo phonenumbers                                            # Libreria no imprescindible pero recomendada
   echo "$requirements" | xargs -I {} cat {}"/requirements.txt" # Custom addons
-} >/opt/odoo/requirements.txt
+} >/home/odoo/requirements.txt
 
 # Se actualiza pip a la última versión para que no falle
 pip3 install --log=/var/log/odoo/pip.log pip --upgrade
 pip3 install --log=/var/log/odoo/pip.log wheel
 
 # Se instalan todas las librerias
-pip3 install --log=/var/log/odoo/pip.log -r /opt/odoo/requirements.txt
+pip3 install --log=/var/log/odoo/pip.log -r /home/odoo/requirements.txt
