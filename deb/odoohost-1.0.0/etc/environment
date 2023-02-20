@@ -1,0 +1,6 @@
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+PGPASSWORD=23bab766a1b7b30b9b6727886
+PGUSER=odoo
+PGDATABASE=processcontrol
+ADDONS_PATH=/home/odoo/src/odoo
+PGHOST=localhost

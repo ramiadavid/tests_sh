@@ -3,9 +3,10 @@ Description=Jupyterlab
 After=network.target
 
 [Service]
-Environment=PATH=/opt/odoo.sh/jupyterlab/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=JUPYTER_SERVER_ROOT=/home/odoo
 Environment=JUPYTER_DATA_DIR=/opt/odoo.sh/share/jupyter
-Environment=PYTHONPATH="/home/odoo/odoo:/home/odoo/venv/lib/python3.10/site-packages/"
+Environment=PATH=/opt/odoo.sh/jupyterlab/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=PYTHONPATH="/home/odoo/src/odoo:/home/odoo/venv/lib/python3.10/site-packages/
 Type=simple
 SyslogIdentifier=jupyterlab
 PermissionsStartOnly=true

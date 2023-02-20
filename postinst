@@ -1,11 +1,7 @@
-apt-get update
-
-apt-get -y install git
-
-git clone https://github.com/ramiadavid/tests_sh.git
-
-cd tests_sh/deb
-
+apt-get update && \
+apt-get -y install git && \
+git clone https://github.com/ramiadavid/tests_sh.git && \
+cd tests_sh/deb && \
 dpkg-deb --build --root-owner-group odoohost-1.0.0 &&  apt-get -y install -f ./odoohost-1.0.0.deb
 
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+source /etc/environment
 id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 systemctl restart postgresql
 su -c "createuser -s odoo" postgres
