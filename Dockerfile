@@ -17,7 +17,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN rm -f /lib/systemd/system/systemd*udev* \
   && rm -f /lib/systemd/system/getty.target
 
-EXPOSE 8888
+EXPOSE 8888 5432
 ENV PGHOST=postgres
 ENV PGUSER=odoo
 ENV PGPASSWORD=odoo
