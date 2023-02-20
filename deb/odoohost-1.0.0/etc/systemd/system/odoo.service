@@ -9,7 +9,8 @@ SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=/home/odoo/venv/bin/python3 /home/odoo/src/odoo/odoo-bin --database=${PGDATABASE} --logfile=/home/odoo/logs/odoo.log --addons-path=$(extract_addons_path)
+ExecStartPre=extract_addons_path
+ExecStart=/home/odoo/venv/bin/python3 /home/odoo/src/odoo/odoo-bin --database=${PGDATABASE} --logfile=/home/odoo/logs/odoo.log --addons-path=${ADDONS_PATH}
 KillMode=mixed
 StandardOutput=journal+console
 
