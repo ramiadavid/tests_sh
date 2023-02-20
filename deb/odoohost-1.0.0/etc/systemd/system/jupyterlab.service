@@ -3,6 +3,7 @@ Description=Jupyterlab
 After=network.target
 
 [Service]
+EnvironmentFile=/etc/environment
 Environment=JUPYTER_SERVER_ROOT=/home/odoo
 Environment=JUPYTER_DATA_DIR=/opt/odoo.sh/share/jupyter
 Environment=PATH=/opt/odoo.sh/jupyterlab/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

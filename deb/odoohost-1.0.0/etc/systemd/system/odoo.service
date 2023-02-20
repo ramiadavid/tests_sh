@@ -3,12 +3,13 @@ Description=Odoo Open Source ERP and CRM
 After=network.target
 
 [Service]
+EnvironmentFile=/etc/environment
 Type=simple
 SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=/home/odoo/venv/python3 /home/odoo/src/odoo/odoo-bin --database=${PGDATABASE}
+ExecStart=/home/odoo/venv/bin/python3 /home/odoo/src/odoo/odoo-bin --database=${PGDATABASE}
 KillMode=mixed
 StandardOutput=journal+console
 
