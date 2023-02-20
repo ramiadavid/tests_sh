@@ -3,7 +3,7 @@ id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 systemctl restart postgresql
 su -c "createuser -s odoo" postgres
 su -c "psql -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\"" postgres
-su -c "psql -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*;\"" postgres
+su -c "psql -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\"" postgres
 
 
 su -c "python3 -m venv /home/odoo/venv" odoo
