@@ -3,6 +3,14 @@ LABEL maintainer="Enio Carboni"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+ENV TZ=Europe/Madrid
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+SHELL ["/bin/bash", "-xo", "pipefail", "-c"]
+
+# Generate locale C.UTF-8 for postgres and general locale data
+ENV LANG C.UTF-8
+
 # Install: dependencies, clean: apt cache, remove dir: cache, man, doc, change mod time of cache dir.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
