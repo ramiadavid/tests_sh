@@ -4,3 +4,5 @@ PGUSER=odoo
 PGDATABASE=processcontrol
 ADDONS_PATH=/home/odoo/src/odoo
 PGHOST=localhost
+TZ=Europe/Madrid
+LANG C.UTF-8
