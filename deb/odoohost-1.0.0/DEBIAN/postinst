@@ -19,6 +19,7 @@ su -c "python3 -m venv /home/odoo/venv" odoo
 su -c "mkdir -p /home/odoo/data" odoo
 su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
+su -c "mkdir -p /home/odoo/src/user" odoo
 
 git -C /home/odoo/src/odoo pull > /dev/null || git clone git@github.com:odoo/odoo.git --depth=1 -b 15.0 /home/odoo/src/odoo
 git -C /home/odoo/src/themes pull > /dev/null || git clone git@github.com:odoo/design-themes.git --depth=1 -b 15.0 /home/odoo/src/themes

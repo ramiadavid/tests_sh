@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "/home/odoo/odoo/addons,/home/odoo/enterprise,/home/odoo/themes,$(find /home/odoo/src -name "__manifest__.py" -printf "%h\n" | xargs -I {} dirname {} | sort | uniq | paste -sd ",")"
