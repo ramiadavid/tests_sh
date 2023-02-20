@@ -8,7 +8,7 @@ SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=python3 /home/odoo/src/odoo/odoo-bin -c /home/odoo/odoo-server-conf
+ExecStart=/home/odoo/venv/python3 /home/odoo/src/odoo/odoo-bin
 KillMode=mixed
 StandardOutput=journal+console
 
