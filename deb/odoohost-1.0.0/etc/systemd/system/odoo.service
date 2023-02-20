@@ -3,11 +3,6 @@ Description=Odoo Open Source ERP and CRM
 After=network.target
 
 [Service]
-Environment=PGPASSWORD=23bab766a1b7b30b9b6727886
-Environment=PGUSER=odoo
-Environment=PGDATABASE=processcontrol
-Environment=ADDONS_PATH=/home/odoo/src/odoo
-Environment=PGHOST=localhost
 Type=simple
 SyslogIdentifier=odoo
 PermissionsStartOnly=true

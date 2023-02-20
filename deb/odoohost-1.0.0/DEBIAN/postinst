@@ -1,18 +1,17 @@
 #!/bin/bash
-source /etc/environment
 id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 systemctl restart postgresql
-su -c "createuser -s odoo" postgres
-su -c "psql -U postgres -d postgres -H /var/run/postgresql/.s.PGSQL.5432 -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\"" postgres
-su -c "psql -U postgres -d postgres -H /var/run/postgresql/.s.PGSQL.5432 -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\"" postgres
+su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo" postgres
+su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\"" postgres
+su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\"" postgres
 
 su -c "python3 -m venv /home/odoo/venv" odoo
 su -c "mkdir -p /home/odoo/data" odoo
 su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
 
-su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://www.github.com/odoo/odoo --depth=1 -b 15.0 /home/odoo/src/odoo" odoo
-su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://www.github.com/odoo/design-themes --depth=1 -b 15.0 /home/odoo/src/themes" odoo
+su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://www.github.com/odoo/odoo.git --depth=1 -b 15.0 /home/odoo/src/odoo" odoo
+su -c "git -C /home/odoo/src/odoo pull > /dev/null || git clone https://www.github.com/odoo/design-themes.git --depth=1 -b 15.0 /home/odoo/src/themes" odoo
 #git -C /home/odoo/src/odoo pull || git clone https://www.github.com/odoo/enterprise --depth=1 -b 15.0 /home/odoo/src/enterprise
 
 python3 -m venv /opt/odoo.sh/jupyterlab
