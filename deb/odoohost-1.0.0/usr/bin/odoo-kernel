@@ -1,12 +1,12 @@
-#!/opt/odoo/odoo-venv/bin/python3
+#!/home/odoo/venv/bin/python3
 
 import sys
+sys.path.append("/opt/odoo.sh/jupyterlab/lib/python3.10/site-packages")
 
 import odoo
 
 from ipykernel.ipkernel import IPythonKernel
 from ipykernel.kernelapp import IPKernelApp
-
 
 class Pretty:
 
