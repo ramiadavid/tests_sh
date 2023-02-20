@@ -1,5 +1,7 @@
 #!/bin/bash
 id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
+
+
 systemctl restart postgresql
 su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo" postgres
 su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\"" postgres
