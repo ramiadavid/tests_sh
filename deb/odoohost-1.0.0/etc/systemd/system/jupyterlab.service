@@ -6,13 +6,13 @@ After=network.target
 Environment=JUPYTER_SERVER_ROOT=/home/odoo
 Environment=JUPYTER_DATA_DIR=/opt/odoo.sh/share/jupyter
 Environment=PATH=/opt/odoo.sh/jupyterlab/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-Environment=PYTHONPATH="/home/odoo/src/odoo:/home/odoo/venv/lib/python3.10/site-packages/
+Environment=PYTHONPATH=/home/odoo/src/odoo:/home/odoo/venv/lib/python3.10/site-packages/
 Type=simple
 SyslogIdentifier=jupyterlab
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=/opt/odoo.sh/jupyterlab/bin/jupyter-lab --ip=0.0.0.0 --ServerApp.base_url=/odoo-sh/jupyterlabr
+ExecStart=/opt/odoo.sh/jupyterlab/bin/jupyter-lab --port=8888 --ip=0.0.0.0 --ServerApp.base_url=/odoo-sh/jupyterlabr
 KillMode=mixed
 StandardOutput=journal+console
 
