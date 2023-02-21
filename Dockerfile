@@ -15,7 +15,7 @@ ENV LANG C.UTF-8
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        software-properties-common \
-       rsyslog systemd systemd-cron sudo \
+       rsyslog systemd systemd-cron sudo git\
     && apt-get clean \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && rm -rf /var/lib/apt/lists/* \

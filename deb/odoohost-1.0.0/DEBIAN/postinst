@@ -40,4 +40,3 @@ chown odoo -R /opt/odoo.sh
 su -c "/opt/odoo.sh/jupyterlab/bin/pip install jupyterlab" odoo
 su -c "/opt/odoo.sh/jupyterlab/bin/pip install markupsafe==2.0.1" odoo
 systemctl enable --now jupyterlab
-
