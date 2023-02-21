@@ -4,7 +4,7 @@ import os
 
 def get_addons_path():
     paths = ['/home/odoo/src/odoo/addons', '/home/odoo/src/enterprise', '/home/odoo/src/themes']
-    paths.extend([os.path.dirname(os.path.dirname(p)) for p in glob.glob('/home/odoo/src/user/**/__manifest__.py')])
+    paths.extend([os.path.dirname(os.path.dirname(p)) for p in glob.glob('/home/odoo/src/user/**/__manifest__.py', recursive=True)])
     return ','.join(set(paths))
 
 
