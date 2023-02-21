@@ -1,3 +1,3 @@
 #!/bin/bash
-export ADDONS_PATH="/home/odoo/src/odoo/addons,/home/odoo/src/enterprise,/home/odoo/src/themes,$(find /home/odoo/src/user -name "__manifest__.py" -printf "%h\n" | xargs -I {} dirname {} | sort | uniq | paste -sd ",")"
+echo "/home/odoo/src/odoo/addons,/home/odoo/src/enterprise,/home/odoo/src/themes,$(find /home/odoo/src/user -name "__manifest__.py" -printf "%h\n" | xargs -I {} dirname {} | sort | uniq | paste -sd ",")"
 
