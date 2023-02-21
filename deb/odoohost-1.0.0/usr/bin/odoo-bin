@@ -8,6 +8,7 @@ REAL_ODOO_BIN = os.path.expanduser('~/src/odoo/odoo-bin')
 
 if __name__ == '__main__':
     os.environ['ODOO_NOTIFY_CRON_CHANGES'] = '1'
+    os.environ['ODOO_STAGE'] = ''
     args = sys.argv[1:]
     if not args or args[0] not in ('deploy', 'help', 'neutralize', 'scaffold', 'start'):
         args = odoo_utils.get_odoo_args(args)
