@@ -28,6 +28,7 @@ su -c "touch /home/odoo/odoo.conf" odoo
 
 pip install pip --upgrade
 pip install wheel
+pip install docopt
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 systemctl daemon-reload
