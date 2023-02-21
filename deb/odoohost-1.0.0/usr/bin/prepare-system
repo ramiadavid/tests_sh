@@ -6,6 +6,6 @@ ll /home/odoo/src/enterprise  > /dev/null || git clone git@github.com:odoo/enter
 ll /home/odoo/src/user  > /dev/null || git clone git@github.com:ramiadavid/processcontrol16.git --recurse-submodules --depth=1 -b main /home/odoo/src/user
 
 
-su -c "pip install -r /home/odoo/src/odoo/requirements.txt" odoo
+pip install -r /home/odoo/src/odoo/requirements.txt
 
 systemctl restart odoo
