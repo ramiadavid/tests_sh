@@ -1,10 +1,10 @@
-import glob
 import os
+import pathlib
 
 
 def get_addons_path():
     paths = ['/home/odoo/src/odoo/addons', '/home/odoo/src/enterprise', '/home/odoo/src/themes']
-    paths.extend([os.path.dirname(os.path.dirname(p)) for p in glob.glob('/home/odoo/src/user/**/__manifest__.py', recursive=True)])
+    paths.extend([os.path.dirname(os.path.dirname(p.as_posix())) for p in pathlib.Path('/home/odoo/src/user/').glob('**/__manifest__.py')])
     return ','.join(set(paths))
 
 
