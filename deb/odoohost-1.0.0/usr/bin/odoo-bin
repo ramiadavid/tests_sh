@@ -4,7 +4,7 @@ import sys
 
 import odoo_utils
 
-REAL_ODOO_BIN = os.path.expanduser('~/src/odoo/odoo-bin')
+REAL_ODOO_BIN = os.path.expanduser('/home/odoo/src/odoo/odoo-bin')
 
 if __name__ == '__main__':
     os.environ['ODOO_NOTIFY_CRON_CHANGES'] = '1'
