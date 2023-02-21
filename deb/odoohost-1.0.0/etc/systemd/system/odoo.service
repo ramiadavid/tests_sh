@@ -10,7 +10,7 @@ SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=python3 odoo-bin --pidfile=/home/odoo/.pid
+ExecStart=odoo-bin --pidfile=/home/odoo/.pid
 KillMode=mixed
 StandardOutput=journal+console
 
