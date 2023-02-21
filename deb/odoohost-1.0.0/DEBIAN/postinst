@@ -26,8 +26,8 @@ su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
 su -c "touch /home/odoo/odoo.conf" odoo
 
-su -c "/home/odoo/venv/bin/pip install pip --upgrade" odoo
-su -c "/home/odoo/venv/bin/pip install wheel" odoo
+pip install pip --upgrade
+pip install wheel
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 systemctl daemon-reload
