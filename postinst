@@ -7,3 +7,5 @@ dpkg-deb --build --root-owner-group odoohost-1.0.0 &&  apt-get -y install -f ./o
 
 dpkg-deb --build --root-owner-group odoohost-1.0.0 && apt-get -y remove odoo-host && apt-get -y install -f ./odoohost-1.0.0.deb
 
+git commit -a -m "ss" && git push
+docker run -p 8888:8888 -p 8069:8069 --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro ramiadavid/odoo-sh:16

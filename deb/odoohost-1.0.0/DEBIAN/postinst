@@ -1,44 +1,43 @@
 #!/bin/bash
-id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 
+
+# Copy ssh keys
 rm -f /root/.ssh/id_rsa
 rm -f /root/.ssh/id_rsa.pub
-
 gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
-
 rm /root/.ssh/*.enc
 chmod 400 /root/.ssh/*
 
-systemctl restart postgresql
-su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo" postgres
-su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\"" postgres
-su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\"" postgres
+# Create odoo user
+id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 
+
+# Prepare postgres
+systemctl restart postgresql
+su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo > /dev/null" postgres
+su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\" > /dev/null" postgres
+su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\" > /dev/null" postgres
+
+# Prepare filesystem
 su -c "python3 -m venv /home/odoo/venv" odoo
 su -c "mkdir -p /home/odoo/data" odoo
 su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
 su -c "touch /home/odoo/odoo.conf" odoo
 
-ssh-keyscan github.com >>~/.ssh/known_hosts
-
-git -C /home/odoo/src/odoo pull > /dev/null || git clone git@github.com:odoo/odoo.git --depth=1 -b 16.0 /home/odoo/src/odoo
-git -C /home/odoo/src/themes pull > /dev/null || git clone git@github.com:odoo/design-themes.git --depth=1 -b 16.0 /home/odoo/src/themes
-git -C /home/odoo/src/enterprise pull || git clone git@github.com:odoo/enterprise.git --depth=1 -b 16.0 /home/odoo/src/enterprise
-git -C /home/odoo/src/user pull || git clone git@github.com:ramiadavid/processcontrol16.git --recurse-submodules --depth=1 -b main /home/odoo/src/user
-
 su -c "/home/odoo/venv/bin/pip install pip --upgrade" odoo
 su -c "/home/odoo/venv/bin/pip install wheel" odoo
-su -c "/home/odoo/venv/bin/pip install -r /home/odoo/src/odoo/requirements.txt" odoo
+
+ssh-keyscan github.com >> ~/.ssh/known_hosts
+systemctl daemon-reload
+systemctl enable --now odoo
 
 
+# Install jupyterlab
 python3 -m venv /opt/odoo.sh/jupyterlab
 chown odoo -R /opt/odoo.sh
 su -c "/opt/odoo.sh/jupyterlab/bin/pip install jupyterlab" odoo
 su -c "/opt/odoo.sh/jupyterlab/bin/pip install markupsafe==2.0.1" odoo
-
-systemctl daemon-reload
 systemctl enable --now jupyterlab
-systemctl enable --now odoo
 
