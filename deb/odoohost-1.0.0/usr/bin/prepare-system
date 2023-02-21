@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ll /home/odoo/src/odoo  > /dev/null || git clone git@github.com:odoo/odoo.git --depth=1 -b 16.0 /home/odoo/src/odoo
-ll /home/odoo/src/themes > /dev/null || git clone git@github.com:odoo/design-themes.git --depth=1 -b 16.0 /home/odoo/src/themes
-ll /home/odoo/src/enterprise  > /dev/null || git clone git@github.com:odoo/enterprise.git --depth=1 -b 16.0 /home/odoo/src/enterprise
-ll /home/odoo/src/user  > /dev/null || git clone git@github.com:ramiadavid/processcontrol16.git --recurse-submodules --depth=1 -b main /home/odoo/src/user
+#ll /home/odoo/src/themes > /dev/null || git clone git@github.com:odoo/design-themes.git --depth=1 -b 16.0 /home/odoo/src/themes
+#ll /home/odoo/src/enterprise  > /dev/null || git clone git@github.com:odoo/enterprise.git --depth=1 -b 16.0 /home/odoo/src/enterprise
+#ll /home/odoo/src/user  > /dev/null || git clone git@github.com:ramiadavid/processcontrol16.git --recurse-submodules --depth=1 -b main /home/odoo/src/user
 
 
 pip install -r /home/odoo/src/odoo/requirements.txt
