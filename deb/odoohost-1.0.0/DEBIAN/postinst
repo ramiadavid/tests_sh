@@ -20,7 +20,7 @@ su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo
 su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\" > /dev/null" postgres
 
 # Prepare filesystem
-su -c "python3 -m venv /home/odoo/venv" odoo
+#su -c "python3 -m venv /home/odoo/venv" odoo
 su -c "mkdir -p /home/odoo/data" odoo
 su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
