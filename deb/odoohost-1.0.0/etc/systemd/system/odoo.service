@@ -10,9 +10,8 @@ SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=odoo-bin --pidfile=/home/odoo/.pid
+ExecStart=odoo-bin --pidfile=/home/odoo/.pid --logfile=/home/odoo/logs/odoo.log
 KillMode=mixed
 StandardOutput=journal+console
 
 [Install]
-WantedBy=multi-user.target
