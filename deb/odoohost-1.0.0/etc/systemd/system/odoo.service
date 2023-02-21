@@ -3,6 +3,8 @@ Description=Odoo Open Source ERP and CRM
 After=network.target
 
 [Service]
+Restart=on-failure
+RestartSec=1s
 EnvironmentFile=/etc/environment
 Type=simple
 SyslogIdentifier=odoo
