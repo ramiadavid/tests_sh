@@ -10,7 +10,7 @@ def get_addons_path():
 
 def get_odoo_args(args):
     odoo_args = [
-        '--addons-path', get_addons_path(),
+        '--addons-path', os.environ['ADDONS_PATH'],
         '--unaccent',
         '--no-database-list',
         '--proxy-mode',

@@ -27,5 +27,5 @@ import docopt
 argv = sys.argv[1:] or ['-h']
 args = docopt.docopt(__doc__, argv=argv)
 
-cmd = ['odoo-bin', '-u', args['<module>'], '--stop-after-init', '--no-http']
+cmd = ['/usr/bin/odoo-bin', '-u', args['<module>'], '--stop-after-init', '--no-http']
 os.execv(cmd[0], cmd)
