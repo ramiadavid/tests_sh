@@ -25,6 +25,9 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN rm -f /lib/systemd/system/systemd*udev* \
   && rm -f /lib/systemd/system/getty.target
 
+ENV USER_REPO git@github.com:ramiadavid/processcontrol16.git
+ENV ODOO_VERSION 16.0
+ENV ODOO_STAGE production
 EXPOSE 8888 5432 8069
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
