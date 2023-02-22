@@ -26,11 +26,6 @@ RUN rm -f /lib/systemd/system/systemd*udev* \
   && rm -f /lib/systemd/system/getty.target
 
 EXPOSE 8888 5432 8069
-ENV PGHOST=postgres
-ENV PGUSER=odoo
-ENV PGPASSWORD=odoo
-ENV PGDATABASE=odoo
-ENV ADDONS_DIR=.
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 CMD ["/lib/systemd/systemd"]
