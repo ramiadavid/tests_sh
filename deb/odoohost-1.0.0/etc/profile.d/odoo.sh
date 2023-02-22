@@ -53,7 +53,7 @@ running <!>Odoo {version}</!> on <!>{machine}</!>
   <W>$</W> <M>odoo-bin shell</M>          Open an Odoo shell
   <W>$</W> <M>odoo-update</M>             Update modules in the database
   <W>$</W> <M>odoosh-import-database</M>  Replace current database and filestore with the provided backup
-  <W>$</W> <M>odoosh-restart</M>          Restart Odoo.sh services
+  <W>$</W> <M>odoo-restart</M>            Restart Odoo service
   <W>$</W> <M>psql</M>                    Open a database shell
 '''.rstrip('\n')
 
