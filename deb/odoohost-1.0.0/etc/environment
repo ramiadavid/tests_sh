@@ -1,7 +1,0 @@
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin"
-PGPASSWORD=toBe72/*
-PGUSER=odoo
-PGDATABASE=processcontrol
-PGHOST=localhost
-TZ=Europe/Madrid
-LANG C.UTF-8

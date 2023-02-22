@@ -4,13 +4,12 @@ After=network.target
 
 [Service]
 Restart=always
-EnvironmentFile=/etc/environment
 Type=simple
 SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=/bin/bash -c 'exec /home/odoo/src/odoo/odoo-bin --config=/home/odoo/odoo.conf --data-dir=/home/odoo/data --database=${PGDATABASE} --logfile=/home/odoo/logs/odoo.log --addons-path=$(extract_addons_path) --pidfile=/home/odoo/.pid'
+ExecStart=/home/odoo/src/odoo/odoo-bin --config=/home/odoo/odoo.conf --data-dir=/home/odoo/data --database=${PGDATABASE} --logfile=/home/odoo/logs/odoo.log --addons-path=${ADDONS_PATH} --pidfile=/home/odoo/.pid
 KillMode=mixed
 StandardOutput=journal+console
 
