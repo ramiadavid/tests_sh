@@ -10,8 +10,9 @@ SyslogIdentifier=odoo
 PermissionsStartOnly=true
 User=odoo
 Group=odoo
-ExecStart=odoo-bin --pidfile=/home/odoo/.pid --logfile=/home/odoo/logs/odoo.log
+ExecStart=/bin/bash -c 'exec /home/odoo/src/odoo/odoo-bin --config=/home/odoo/odoo.conf --data-dir=/home/odoo/data --database=${PGDATABASE} --logfile=/home/odoo/logs/odoo.log --addons-path=$(extract_addons_path) --pidfile=/home/odoo/.pid'
 KillMode=mixed
 StandardOutput=journal+console
 
 [Install]
+WantedBy=multi-user.target
