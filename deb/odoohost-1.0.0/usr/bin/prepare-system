@@ -8,4 +8,6 @@ ll /home/odoo/src/user  > /dev/null || git clone git@github.com:ramiadavid/proce
 
 pip install -r /home/odoo/src/odoo/requirements.txt
 
+prepare-libs
+
 systemctl restart odoo

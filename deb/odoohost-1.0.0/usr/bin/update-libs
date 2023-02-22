@@ -1,25 +1,14 @@
 #!/bin/bash
-venv_path="/home/odoo/venv"
-odoo_path="/home/odoo/src/odoo"
-addons_path="/home/odoo/src/user"
-
-# Activamos el venv donde vamos a instalar las librerias
-source "$venv_path/bin/activate"
-
 # Se obtienen los archivos de requirementes.txt
-requirements=$(find "${addons_path}" -name "requirements.txt" -printf "%h\n" | sort)
+requirements=$(find "/home/odoo/src/user" -name "requirements.txt" -printf "%h\n" | sort)
 
 # Se juntan todas las dependencias en un solo archivo ya que pip gestiona mejor las incompatibilidades
 {
-  cat "${odoo_path}/requirements.txt"                          # Las propias de Odoo
-  echo pdfminer                                                # Libreria no imprescindible pero recomendada
-  echo phonenumbers                                            # Libreria no imprescindible pero recomendada
+  cat "/home/odoo/src/odoo/requirements.txt"                   # Las propias de Odoo
   echo "$requirements" | xargs -I {} cat {}"/requirements.txt" # Custom addons
-} >/home/odoo/requirements.txt
+} > /home/odoo/tmp/requirements.txt
 
-# Se actualiza pip a la última versión para que no falle
-pip3 install --log=/var/log/odoo/pip.log pip --upgrade
-pip3 install --log=/var/log/odoo/pip.log wheel
 
 # Se instalan todas las librerias
-pip3 install --log=/var/log/odoo/pip.log -r /home/odoo/requirements.txt
+pip3 install --log=/var/log/odoo/pip.log -r /home/odoo/tmp/requirements.txt
+rm -rf /home/odoo/tmp/*

@@ -24,11 +24,14 @@ su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo
 su -c "mkdir -p /home/odoo/data" odoo
 su -c "mkdir -p /home/odoo/src" odoo
 su -c "mkdir -p /home/odoo/logs" odoo
+su -c "mkdir -p /home/odoo/tmp" odoo
 su -c "touch /home/odoo/odoo.conf" odoo
 
 pip install pip --upgrade
 pip install wheel
 pip install docopt
+pip install pdfminer
+pip install phonenumbers
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 systemctl daemon-reload
