@@ -1,6 +1,8 @@
 #!/bin/bash
 chmod 700 /usr/bin/system-init
 chmod 700 /usr/bin/update-libs
+chmod 700 /usr/bin/odoo-install
+chmod 700 /usr/bin/pg-install
 
 # Copy ssh keys
 rm -f /root/.ssh/id_rsa
@@ -9,3 +11,4 @@ gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
 rm /root/.ssh/*.enc
 chmod 400 /root/.ssh/*
+cat /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
