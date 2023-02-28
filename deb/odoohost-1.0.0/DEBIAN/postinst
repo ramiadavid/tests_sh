@@ -1,5 +1,6 @@
 #!/bin/bash
-
+chmod 700 /usr/bin/system-init
+chmod 700 /usr/bin/update-libs
 
 # Copy ssh keys
 rm -f /root/.ssh/id_rsa
@@ -8,39 +9,3 @@ gpg --batch --output /root/.ssh/id_rsa --decrypt /root/.ssh/id_rsa.enc
 gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
 rm /root/.ssh/*.enc
 chmod 400 /root/.ssh/*
-
-# Create odoo user
-id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
-
-
-# Prepare postgres
-systemctl restart postgresql
-su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo > /dev/null" postgres
-su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\" > /dev/null" postgres
-su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD 'toBe72/*';\" > /dev/null" postgres
-
-# Prepare filesystem
-#su -c "python3 -m venv /home/odoo/venv" odoo
-su -c "mkdir -p /home/odoo/data" odoo
-su -c "mkdir -p /home/odoo/src" odoo
-su -c "mkdir -p /home/odoo/logs" odoo
-su -c "mkdir -p /home/odoo/tmp" odoo
-su -c "touch /home/odoo/odoo.conf" odoo
-
-pip install pip --upgrade
-pip install wheel
-pip install docopt
-pip install pdfminer
-pip install phonenumbers
-
-ssh-keyscan github.com >> ~/.ssh/known_hosts
-systemctl daemon-reload
-systemctl enable --now odoo
-
-
-# Install jupyterlab
-python3 -m venv /opt/odoo.sh/jupyterlab
-chown odoo -R /opt/odoo.sh
-su -c "/opt/odoo.sh/jupyterlab/bin/pip install jupyterlab" odoo
-su -c "/opt/odoo.sh/jupyterlab/bin/pip install markupsafe==2.0.1" odoo
-systemctl enable --now jupyterlab
