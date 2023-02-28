@@ -1,20 +1,2 @@
 #!/bin/bash
 
-
-
-pip install pip --upgrade
-pip install wheel
-pip install docopt
-pip install pdfminer
-pip install phonenumbers
-
-ssh-keyscan github.com >> ~/.ssh/known_hosts
-systemctl daemon-reload
-systemctl enable --now odoo
-
-# Install jupyterlab
-python3 -m venv /opt/odoo.sh/jupyterlab
-chown odoo -R /opt/odoo.sh
-su -c "/opt/odoo.sh/jupyterlab/bin/pip install jupyterlab" odoo
-su -c "/opt/odoo.sh/jupyterlab/bin/pip install markupsafe==2.0.1" odoo
-systemctl enable --now jupyterlab
