@@ -12,3 +12,15 @@ gpg --batch --output /root/.ssh/id_rsa.pub --decrypt /root/.ssh/id_rsa.pub.enc
 rm /root/.ssh/*.enc
 chmod 400 /root/.ssh/*
 cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys
+
+# Create odoo user
+id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
+
+# Prepare filesystem
+su -c "mkdir -p /home/odoo/data" odoo
+su -c "mkdir -p /home/odoo/src" odoo
+su -c "mkdir -p /home/odoo/logs" odoo
+su -c "mkdir -p /home/odoo/tmp" odoo
+su -c "touch /home/odoo/odoo.conf" odoo
+
+cat /root/.ssh/id_rsa.pub > /home/odoo/.ssh/authorized_keys

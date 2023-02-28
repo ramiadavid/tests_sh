@@ -1,14 +1,6 @@
 #!/bin/bash
 
-# Create odoo user
-id -u odoo &>/dev/null || useradd -m -d /home/odoo -U -r -s /bin/bash odoo
 
-# Prepare filesystem
-su -c "mkdir -p /home/odoo/data" odoo
-su -c "mkdir -p /home/odoo/src" odoo
-su -c "mkdir -p /home/odoo/logs" odoo
-su -c "mkdir -p /home/odoo/tmp" odoo
-su -c "touch /home/odoo/odoo.conf" odoo
 
 pip install pip --upgrade
 pip install wheel
