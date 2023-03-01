@@ -1,3 +1,4 @@
 #!/bin/bash
-source /etc/profile.d/01-environment.sh
+source /etc/profile.d/01-env-vars.sh
+source /etc/profile.d/02-environment.sh
 /home/odoo/src/odoo/odoo-bin --config=/home/odoo/odoo.conf --data-dir=/home/odoo/data --database="${PGDATABASE}" --logfile=/home/odoo/logs/odoo.log --addons-path="${ADDONS_PATH}" --pidfile=/home/odoo/.pid
