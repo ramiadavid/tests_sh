@@ -32,8 +32,6 @@ pip install pdfminer
 pip install phonenumbers
 
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-systemctl daemon-reload
-systemctl enable --now odoo
 
 # Install jupyterlab
 python3 -m venv /opt/odoo.sh/jupyterlab
