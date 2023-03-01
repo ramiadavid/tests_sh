@@ -25,6 +25,15 @@ for i in "$@"; do
     PGHOST="${i#*=}"
     shift
     ;;
+  -p=* | --password=*)
+    PGPASSWORD="${i#*=}"
+    shift
+    ;;
+  --with-postgres)
+    with_postgress=1
+    PGHOST="localhost"
+    shift
+    ;;
   -* | --*)
     echo "Unknown option $i"
     exit 1
@@ -41,7 +50,8 @@ export ODOO_STAGE=\"%s\"
 export PGDATABASE=\"%s\"
 export PGUSER=\"%s\"
 export PGHOST=\"%s\"
-" "${USER_REPO}" "${ODOO_VERSION}" "${ODOO_STAGE}" "${PGDATABASE}" "${PGUSER}" "${PGHOST}" >/etc/profile.d/01-env-vars.sh
+export PGPASSWORD=\"%s\"
+" "${USER_REPO}" "${ODOO_VERSION}" "${ODOO_STAGE}" "${PGDATABASE}" "${PGUSER}" "${PGHOST}" "${PGPASSWORD}" >/etc/profile.d/01-env-vars.sh
 
 git clone git@github.com:odoo/odoo.git --depth=1 -b 16.0 /home/odoo/src/odoo
 git clone git@github.com:odoo/design-themes.git --depth=1 -b 16.0 /home/odoo/src/themes
@@ -49,6 +59,10 @@ git clone git@github.com:odoo/enterprise.git --depth=1 -b 16.0 /home/odoo/src/en
 git clone "${USER_REPO}" --recurse-submodules --depth=1 -b main /home/odoo/src/user
 
 update-libs
+
+if [ -n "$with_postgress" ]; then
+  pg-install "--password=${PGPASSWORD}"
+fi
 
 systemctl enable odoo
 systemctl restart odoo

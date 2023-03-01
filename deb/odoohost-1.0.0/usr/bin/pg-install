@@ -1,11 +1,20 @@
 #!/bin/bash
 apt-get install postgresql -y
 
-read -r -p 'Set password: ' password
+for i in "$@"; do
+  case $i in
+  -p=* | --password=*)
+    PGPASSWORD="${i#*=}"
+    shift
+    ;;
+  *) ;;
+
+  esac
+done
 
 # Prepare postgres
 systemctl restart postgresql
 su -c "createuser -U postgres -h /var/run/postgresql/ -s odoo > /dev/null" postgres
 su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo CREATEDB CREATEROLE LOGIN NOSUPERUSER;\" > /dev/null" postgres
-su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD '${password}';\" > /dev/null" postgres
+su -c "psql -U postgres -d postgres -h /var/run/postgresql/ -c \"ALTER USER odoo WITH PASSWORD '${PGPASSWORD}';\" > /dev/null" postgres
 

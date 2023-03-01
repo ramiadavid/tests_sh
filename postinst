@@ -9,3 +9,6 @@ dpkg-deb --build --root-owner-group odoohost-1.0.0 && apt-get -y remove odoo-hos
 
 git commit -a -m "ss" && git push
 docker run -p 8888:8888 -p 8069:8069 --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro ramiadavid/odoo-sh:16
+
+
+odoo-install --repository=git@github.com:ramiadavid/processcontrol16.git --version=16.0 --stage=production --dbname=processcontrol --user=odoo --host=localhost --password=123456 --with-postgres
