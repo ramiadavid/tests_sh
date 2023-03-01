@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 git clone git@github.com:odoo/odoo.git --depth=1 -b 16.0 /home/odoo/src/odoo
 git clone git@github.com:odoo/design-themes.git --depth=1 -b 16.0 /home/odoo/src/themes
 git clone git@github.com:odoo/enterprise.git --depth=1 -b 16.0 /home/odoo/src/enterprise
