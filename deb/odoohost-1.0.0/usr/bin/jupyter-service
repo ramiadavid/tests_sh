@@ -1,7 +1,7 @@
 #!/bin/bash
 export JUPYTER_SERVER_ROOT="/home/odoo"
 export JUPYTER_DATA_DIR="/opt/odoo.sh/share/jupyter"
-exoprt PATH="/opt/odoo.sh/jupyterlab/bin:${PATH}"
+export PATH="/opt/odoo.sh/jupyterlab/bin:${PATH}"
 export PYTHONPATH="/home/odoo/src/odoo:/home/odoo/venv/lib/python3.10/site-packages/"
 
 source /etc/profile.d/01-env-vars.sh
