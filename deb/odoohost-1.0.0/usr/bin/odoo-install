@@ -21,7 +21,7 @@ for i in "$@"; do
     PGUSER="${i#*=}"
     shift
     ;;
-    -h=* | --host=*)
+  -h=* | --host=*)
     PGHOST="${i#*=}"
     shift
     ;;
@@ -34,10 +34,14 @@ for i in "$@"; do
   esac
 done
 
-printf "#/bin/bash\n
+printf "#/bin/bash
 export USER_REPO=\"%s\"
-
-", USER_REPO > /etc/profile.d/01-env-vars.sh
+export ODOO_VERSION=\"%s\"
+export ODOO_STAGE=\"%s\"
+export PGDATABASE=\"%s\"
+export PGUSER=\"%s\"
+export PGHOST=\"%s\"
+" "${USER_REPO}" "${ODOO_VERSION}" "${ODOO_STAGE}" "${PGDATABASE}" "${PGUSER}" "${PGHOST}" >/etc/profile.d/01-env-vars.sh
 
 git clone git@github.com:odoo/odoo.git --depth=1 -b 16.0 /home/odoo/src/odoo
 git clone git@github.com:odoo/design-themes.git --depth=1 -b 16.0 /home/odoo/src/themes
