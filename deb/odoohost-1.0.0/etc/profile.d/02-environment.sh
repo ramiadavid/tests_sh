@@ -1,12 +1,4 @@
 #!/bin/bash
-export USER_REPO="git@github.com:ramiadavid/processcontrol16.git"
-export ODOO_VERSION="16.0"
-export ODOO_STAGE="production"
-export PGHOST="localhost"
-export PGPASSWORD="toBe72/*"
-export PGUSER="odoo"
-export PGDATABASE="processcontrol"
-export PGHOST="localhost"
 export ADDONS_PATH="/home/odoo/src/odoo/addons,/home/odoo/src/enterprise,/home/odoo/src/themes"
 
 custom_addons="$(find /home/odoo/src/user -name "__manifest__.py" -printf "%h\n" | xargs -I {} dirname {} | sort | uniq | paste -sd ",")"
