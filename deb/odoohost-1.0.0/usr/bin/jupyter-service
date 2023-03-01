@@ -1,9 +1,10 @@
 #!/bin/bash
-#export JUPYTER_SERVER_ROOT="/home/odoo"
+export JUPYTER_SERVER_ROOT="/home/odoo"
 export JUPYTER_DATA_DIR="/opt/odoo.sh/share/jupyter"
 export PATH="/opt/odoo.sh/jupyterlab/bin:${PATH}"
 export PYTHONPATH="/home/odoo/src/odoo:/home/odoo/venv/lib/python3.10/site-packages/"
 
 source /etc/profile.d/01-env-vars.sh
 source /etc/profile.d/02-environment.sh
-/opt/odoo.sh/jupyterlab/bin/jupyter-lab --port=8888 --port-retries=0 --ip=0.0.0.0 --ServerApp.base_url=/odoo-sh/jupyterlab --FileContentsManager.preferred_dir=/home/odoo --ServerApp.token='67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed'
+
+/opt/odoo.sh/jupyterlab/bin/jupyter-lab --port=8888 --port-retries=0 --ip=0.0.0.0 --notebook-dir=/ --ServerApp.base_url=/odoo-sh/jupyterlab --FileContentsManager.preferred_dir=/home/odoo --ServerApp.token='67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed'
